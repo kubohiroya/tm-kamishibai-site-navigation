@@ -1,0 +1,62 @@
+{
+  "name": "@kubohiroya/tm-kamishibai-site-navigation",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Shared site navigation contract, renderer, and shell assets for TM Kamishibai sites.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubohiroya/tm-kamishibai-site-navigation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kubohiroya/tm-kamishibai-site-navigation/issues"
+  },
+  "homepage": "https://github.com/kubohiroya/tm-kamishibai-site-navigation#readme",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./navigation-contract.json": "./dist/navigation-contract.json",
+    "./site-shell.css": "./dist/site-shell.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@11.18.0",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json && cp src/navigation-contract.json dist/navigation-contract.json && cp src/site-shell.css dist/site-shell.css",
+    "clean": "rm -rf dist",
+    "format": "prettier --check \"**/*.{css,json,md,ts,yml}\"",
+    "lint": "eslint eslint.config.mjs src test",
+    "prepack": "pnpm verify",
+    "test": "npm run build && node --test --experimental-strip-types test/*.test.ts",
+    "typecheck": "tsc --project tsconfig.json",
+    "verify": "npm run lint && npm run format && npm run typecheck && npm run test"
+  },
+  "keywords": [
+    "tm-kamishibai",
+    "navigation",
+    "site"
+  ],
+  "author": "Hiroya Kubo",
+  "license": "MPL-2.0",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "^26.4.1",
+    "eslint": "^10.9.1",
+    "globals": "17.12.0",
+    "prettier": "^3.9.6",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.69.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
